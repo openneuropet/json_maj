@@ -1,0 +1,10 @@
+.idea/
+
+*__pycache__
+
+# packaged python files
+
+dist/
+
+# temp files, let's not commit those
+*temp*
