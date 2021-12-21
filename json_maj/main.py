@@ -5,10 +5,13 @@ def load_json_or_dict(json_or_dict):
     if isinstance(json_or_dict, dict):
         return json_or_dict
     elif isinstance(json_or_dict, str):
-        # try path actions on the passed variable
-        with open(json_or_dict, 'r') as infile:
-            loaded_json = json.load(infile)
-        return loaded_json
+        try:
+            # try path actions on the passed variable
+            with open(json_or_dict, 'r') as infile:
+                loaded_json = json.load(infile)
+            return loaded_json
+        except FileNotFoundError:
+            return {}
 
 
 class JsonMAJ:
