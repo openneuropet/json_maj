@@ -21,11 +21,13 @@ def update_test_data():
         json.dump(test_data, outfile)
 
 
-@pytest.fixture
-def cleanup_test_data():
-    # clean up test json
-    os.remove(path_to_temp_json)
-    os.remove(path_to_temp_json_to_update_from)
+@pytest.fixture(scope="session", autouse=True)
+def cleanup_test_data(request):
+    def remove_test_files():
+        # clean up test json
+        os.remove(path_to_temp_json)
+        os.remove(path_to_temp_json_to_update_from)
+    request.addfinalizer(remove_test_files)
 
 
 def test_JsonMAJ_load_json_or_dict(setup_test_data):
@@ -81,6 +83,3 @@ def test_JsonMAJ_remove(setup_test_data, update_test_data):
     with pytest.raises(KeyError):
         test_remove_method['remove']
 
-
-def final_cleanup(cleanup_test_data):
-    pass

@@ -40,6 +40,7 @@ def cli():
     if args.kwargs:
         json_maj = JsonMAJ(json_path=args.json,
                            update_values=args.kwargs)
+        json_maj.update()
 
     if args.remove:
         json_maj = JsonMAJ()
