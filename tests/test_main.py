@@ -82,4 +82,3 @@ def test_JsonMAJ_remove(setup_test_data, update_test_data):
     # assert key is no longer in file
     with pytest.raises(KeyError):
         test_remove_method['remove']
-
