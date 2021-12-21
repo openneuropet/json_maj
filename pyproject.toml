@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "json_maj"
+version = "0.0.0"
+description = "Updates Jsons w/ json, key pair, or entire dictionary as arguments"
+authors = ["anthony galassi <28850131+bendhouseart@users.noreply.github.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+pytest = "^6.2.5"
+
+[tool.poetry.dev-dependencies]
+
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
