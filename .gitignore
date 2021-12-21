@@ -5,6 +5,7 @@
 # packaged python files
 
 dist/
+build/
 
 # temp files, let's not commit those
 *temp*
