@@ -1,5 +1,5 @@
 import argparse
-from main import JsonMAJ
+from json_maj.main import JsonMAJ
 import sys
 
 

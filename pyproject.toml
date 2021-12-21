@@ -6,10 +6,14 @@ authors = ["anthony galassi <28850131+bendhouseart@users.noreply.github.com>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = ">=3.7,<3.11"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"
+pyinstaller = "^4.7"
+
+[tool.poetry.scripts]
+updatejson = 'json_maj.cli:cli'
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
