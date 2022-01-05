@@ -9,3 +9,6 @@ build/
 
 # temp files, let's not commit those
 *temp*
+
+# pytest cache
+.pytest_cache
