@@ -42,3 +42,6 @@ class JsonMAJ:
 
         with open(self.json_path, 'w') as outfile:
             json.dump(self.json_data, outfile, indent=self.indent)
+
+    def get(self, item):
+        return self.json_data.get(item, None)
