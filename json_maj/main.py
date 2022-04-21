@@ -21,7 +21,7 @@ class JsonMAJ:
         self.update_values = load_json_or_dict(update_values)
         self.indent = indent
 
-    def update(self):
+    def update(self, values=None):
         try:
             with open(self.json_path, 'r') as infile:
                 try:
@@ -31,7 +31,10 @@ class JsonMAJ:
         except FileNotFoundError:
             pass
 
-        self.json_data.update(self.update_values)
+        if values:
+            self.json_data.update(values)
+        else:
+            self.json_data.update(self.update_values)
 
         with open(self.json_path, 'w') as outfile:
             json.dump(self.json_data, outfile, indent=self.indent)

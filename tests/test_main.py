@@ -44,6 +44,16 @@ def test_JsonMAJ_update_json_from_dictionary(setup_test_data, update_test_data):
 
     assert updated_json == test_data
 
+    # test updating after object creation
+    json_maj = JsonMAJ(path_to_temp_json)
+    update_args = {"updateargs": "updatevalues"}
+    json_maj.update(update_args)
+
+    with open(json_maj.json_path, 'r') as infile:
+        updated_json = json.load(infile)
+
+    assert updated_json['updateargs'] == update_args['updateargs']
+
 
 def test_JsonMAJ_update_json_from_json(setup_test_data, update_test_data):
     json_maj = JsonMAJ(path_to_temp_json, path_to_temp_json_to_update_from)
