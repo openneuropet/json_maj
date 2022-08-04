@@ -4,7 +4,7 @@ import json
 import os
 
 path_to_temp_json = 'temp_test_json.json'
-test_data = {'test': 'this is only a test'}
+test_data = {'test': 'this is only a test', 'nested':{'nested': 1}}
 path_to_temp_json_to_update_from = 'temp_test_json_to_update_from.json'
 
 
@@ -98,3 +98,9 @@ def test_JsonMAJ_get(setup_test_data, update_test_data):
     json_maj.update()
     gotten = json_maj.get('test')
     assert gotten == test_data['test']
+
+def test_JsonMAJ_get_nested(setup_test_data, update_test_data):
+    json_maj = JsonMAJ(path_to_temp_json, test_data)
+    json_maj.update()
+    gotten = json_maj.get('nested', 'nested')
+    assert gotten == test_data['nested']['nested']

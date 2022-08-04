@@ -21,7 +21,7 @@ parser.add_argument('--kwargs', '-k', nargs='*', action=ParseKwargs, default={},
                          "the supplied json. e.g. including `--kwargs TimeZero='12:12:12'` would override the "
                          "calculated TimeZero. Any number of additional arguments can be supplied after --kwargs "
                          "e.g. `--kwargs BidsVariable1=1 BidsVariable2=2` etc etc.")
-parser.add_argument('--get', '-g', help="Checks for the value of of a key within the json.")
+parser.add_argument('--get', '-g', nargs='+', help="Checks for the value of of a key within the json.")
 parser.add_argument('--remove', '-r', nargs='*', required=False,
                     help="Provide a key or several keys to be removed from a json in the form of `--remove key1 key2`. "
                          "This argument can not be used with arguments that add information to a json.")
@@ -49,7 +49,7 @@ def cli():
 
     if args.get:
         json_maj = JsonMAJ(json_path=args.json)
-        print(json_maj.get(args.get))
+        print(json_maj.get(*args.get))
 
 
 if __name__ == "__main__":

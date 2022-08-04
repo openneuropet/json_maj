@@ -46,5 +46,11 @@ class JsonMAJ:
         with open(self.json_path, 'w') as outfile:
             json.dump(self.json_data, outfile, indent=self.indent)
 
-    def get(self, item):
-        return self.json_data.get(item, None)
+    def get(self, *items):
+        data_copy = self.json_data.copy()
+        try:
+            for item in items:
+                data_copy = data_copy[item]
+        except KeyError:
+            data_copy = None
+        return data_copy
