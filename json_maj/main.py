@@ -37,14 +37,14 @@ class JsonMAJ:
             self.json_data.update(self.update_values)
 
         with open(self.json_path, 'w') as outfile:
-            json.dump(self.json_data, outfile, indent=self.indent)
+            json.dump(self.json_data, outfile, indent=self.indent, default=str)
 
     def remove(self, *keys):
         for key in keys:
             self.json_data.pop(key, None)
 
         with open(self.json_path, 'w') as outfile:
-            json.dump(self.json_data, outfile, indent=self.indent)
+            json.dump(self.json_data, outfile, indent=self.indent, default=str)
 
     def get(self, *items):
         data_copy = self.json_data.copy()
