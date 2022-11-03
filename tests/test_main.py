@@ -104,3 +104,12 @@ def test_JsonMAJ_get_nested(setup_test_data, update_test_data):
     json_maj.update()
     gotten = json_maj.get('nested', 'nested')
     assert gotten == test_data['nested']['nested']
+
+def test_null_write(setup_test_data, update_test_data):
+    json_maj = JsonMAJ(path_to_temp_json, {'ShouldBeNone': None}, bids_null=True)
+    json_maj.update()
+    with open(path_to_temp_json, 'r') as infile:
+        string_json = infile.read()
+        assert 'null' not in string_json
+    get_not_null = json_maj.get('ShouldBeNone')
+    assert get_not_null == "none"

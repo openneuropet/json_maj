@@ -15,11 +15,13 @@ def load_json_or_dict(json_or_dict):
 
 
 class JsonMAJ:
-    def __init__(self, json_path, update_values={}, indent=4):
+    def __init__(self, json_path, update_values={}, indent=4,
+                 bids_null=False):
         self.json_path = json_path
         self.json_data = load_json_or_dict(self.json_path)
         self.update_values = load_json_or_dict(update_values)
         self.indent = indent
+        self.bids_null = bids_null  # if set to true replace null's with "none" per bids specification
 
     def update(self, values=None):
         try:
@@ -38,6 +40,19 @@ class JsonMAJ:
 
         with open(self.json_path, 'w') as outfile:
             json.dump(self.json_data, outfile, indent=self.indent, default=str)
+
+        if self.bids_null:
+            with open(self.json_path, 'r') as infile:
+                json_strings = infile.read()
+                infile.close()
+
+            if json_strings:
+                json_strings = json_strings.replace('null', '"none"')
+                json_strings = json.loads(json_strings)
+                self.json_data.update(json_strings)
+
+                with open(self.json_path, 'w') as outfile:
+                    json.dump(self.json_data, outfile, indent=self.indent, default=str)
 
     def remove(self, *keys):
         for key in keys:
