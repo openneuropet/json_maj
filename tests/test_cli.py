@@ -60,7 +60,7 @@ def test_cli_update_kwargs(setup_test_data):
 def test_cli_remove(setup_test_data):
     test_cli_remove_json_path = setup_test_data / 'test_cli_remove.json'
     command = f"python -m json_maj.cli {test_cli_remove_json_path} --kwargs KeepMe='stay' " \
-              f"DeleteMe='go away!' DeleteMeToo='destroy this'"
+              f"DeleteMe='go away!' DeleteMeToo='destroy this' SaveMeForSingleDelete='please'"
     subprocess.run(command, shell=True)
     with open(test_cli_remove_json_path, 'r') as infile:
         contents = json.load(infile)
@@ -72,4 +72,15 @@ def test_cli_remove(setup_test_data):
     with open(test_cli_remove_json_path, 'r') as infile:
         del_contents = json.load(infile)
     assert del_contents['KeepMe'] == 'stay'
+    assert len(del_contents.keys()) == 2
+
+    command = f"python -m json_maj.cli {test_cli_remove_json_path} --remove SaveMeForSingleDelete"
+    subprocess.run(command, shell=True)
+    with open(test_cli_remove_json_path, 'r') as infile:
+        del_contents = json.load(infile)
+    assert del_contents['KeepMe'] == 'stay'
     assert len(del_contents.keys()) == 1
+
+
+
+
