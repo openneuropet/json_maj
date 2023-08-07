@@ -4,7 +4,7 @@ It updates the jsons! That's it!
 ## Usage
 
 ```bash
-usage: cli.py [-h] [--updatefile UPDATEFILE] [--kwargs [KWARGS ...]] [--remove [REMOVE ...]] json_file
+usage: updatejson [-h] [--updatefile UPDATEFILE] [--kwargs [KWARGS ...]] [--remove [REMOVE ...]] json_file
 
 positional arguments:
   json_file             Json file to be updated
